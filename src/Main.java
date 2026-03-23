@@ -1,14 +1,11 @@
 // libraries
+import javax.swing.*;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Main {
 
     // main function
     public static void main(String[] args){
-
-        // use of Scanner
-        Scanner scanner = new Scanner(System.in);
 
         // Initialized variables
         String factureName = "";
@@ -17,17 +14,15 @@ public class Main {
 
         try {
             // application flow
-            String message = "Please, enter facture names : ";
-            System.out.println(message + "\n");
-            factureName = scanner.nextLine();
-
-            System.out.println("Now, Enter first price \n");
-            price1 = scanner.nextDouble();
-
-            System.out.println("Please, second one");
-            price2 = scanner.nextDouble();
+            factureName = JOptionPane.showInputDialog("Please, enter facture names : ");
+            price1 = Double.parseDouble(JOptionPane.showInputDialog("Now, Enter first price \n"));
+            price2 = Double.parseDouble(JOptionPane.showInputDialog("Please, second one"));
         } catch (InputMismatchException e){
-            System.out.println("Please, select correct values");
+            JOptionPane.showMessageDialog(null, "Please, select correct values");
+            main(args);
+            System.exit(0);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please, select correct values");
             main(args);
             System.exit(0);
         }
@@ -38,7 +33,7 @@ public class Main {
         double taxPrice = totalPrice + totalPrice;
 
         // print result
-        System.out.println("The " + factureName + "facture  get a gross value of " + totalPrice + ", tax : " + tax + " after taxes : " + taxPrice );
+        JOptionPane.showMessageDialog(null, "The " + factureName + "facture  get a gross value of " + totalPrice + ", tax : " + tax + " after taxes : " + taxPrice);
 
     }
 }
