@@ -1,6 +1,7 @@
 // libraries
 import javax.swing.*;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -16,6 +17,9 @@ public class Main {
         String[] userNames = new String[3];
         String[] password = new String[3];
 
+        // Initialized a Scanner object
+        Scanner scanner = new Scanner(System.in);
+
 
         // enter manually the users and theirs passwords
         userNames[0] = "julián";
@@ -29,8 +33,10 @@ public class Main {
 
 
         // get the userName and password from the user
-        String u = JOptionPane.showInputDialog(null, "Please, enter the user : ");
-        String p = JOptionPane.showInputDialog(null, "Please, enter the password : ");
+        System.out.println("Please, enter the user : ");
+        String u = scanner.nextLine();
+        System.out.println("Please, enter the password : ");
+        String p = scanner.nextLine();
 
 
         // the key variable for the application flow
@@ -54,31 +60,38 @@ public class Main {
             if (enter){
 
                 // application flow
-                factureName = JOptionPane.showInputDialog("Please, enter facture names : ");
-                price1 = Double.parseDouble(JOptionPane.showInputDialog("Now, Enter first price \n"));
-                price2 = Double.parseDouble(JOptionPane.showInputDialog("Please, second one"));
+
+                System.out.println("Please, enter facture names : ");
+                factureName = scanner.nextLine();
+
+                System.out.println("Now, Enter first price :  ");
+                price1 = scanner.nextDouble();
+
+                System.out.println("Now, Enter second one :  ");
+                price2 = scanner.nextDouble();
             } else {
-                JOptionPane.showMessageDialog(null, "UserName or password is incorrect");
+                System.out.print("UserName or password is incorrect");
             }
         } catch (InputMismatchException e){
-            JOptionPane.showMessageDialog(null, "Please, select correct values");
+            System.out.println("Please, select correct values");
             main(args);
             System.exit(0);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please, select correct values");
+            System.out.println("Please, select correct values");
             main(args);
             System.exit(0);
         }
 
         if (enter) {
 
-        // calculates doubles
-        double totalPrice = price1 + price2;
-        double tax = totalPrice * 0.19;
-        double taxPrice = totalPrice + totalPrice;
+            // calculates doubles
+            double totalPrice = price1 + price2;
+            double tax = totalPrice * 0.19;
+            double taxPrice = totalPrice + totalPrice;
 
-        // print result
-        JOptionPane.showMessageDialog(null, "The " + factureName + "facture  get a gross value of " + totalPrice + ", tax : " + tax + " after taxes : " + taxPrice);
+            // print result
+            System.out.println("The " + factureName + "facture  get a gross value of " + totalPrice + ", tax : " + tax + " after taxes : " + taxPrice);
+
         }
 
 
